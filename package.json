@@ -17,6 +17,13 @@
   },
   "homepage": "https://github.com/dominickp/handwriting.io#readme",
   "dependencies": {
-    "handwriting.io": "^0.1.0"
+    "gulp": "^3.9.0",
+    "handwriting.io": "^0.1.0",
+    "j": "^0.4.3",
+    "yargs": "^3.32.0"
+  },
+  "devDependencies": {
+    "gulp-jasmine": "^2.2.1",
+    "gulp-jshint": "^2.0.0"
   }
 }
