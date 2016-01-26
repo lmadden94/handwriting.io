@@ -16,10 +16,25 @@ if(action === 'get-handwritings'){
     hw.getAllHandwritings(function(err, handwritings){
         if (err)
             return console.log(err);
+        var json_tb_out = new json_tb(handwritings, null, function(table) {table.show()});
+    });
+}
 
-        var json_tb_out = new json_tb(handwritings, null, function(table) {
-            table.show(); // **have to call show() function to print out the table**
-        });
+if(action === 'get-handwriting'){
+    var json_tb = require('json-table');
+    var Hw = require('handwriting.io');
+    var hw = new Hw({apiKey: api_key, apiSecret: api_secret});
 
+    argv = require('yargs')
+        .usage('Usage: $0 --id [handwriting_id]')
+        .demand(['id'])
+        .argv;
+
+    var handwriting_id = argv.id;
+
+    hw.getHandwriting(handwriting_id, function(err, handwriting){
+        if (err)
+            return console.log(err);
+        var json_tb_out = new json_tb(handwriting, null, function(table) {table.show()});
     });
 }
