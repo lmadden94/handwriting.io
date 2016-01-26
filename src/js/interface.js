@@ -51,6 +51,7 @@ if(action === 'generate-single'){
         .demand(['handwriting_id', 'text'])
         .argv;
 
+    var fs = require('fs');
     var Hw = require('handwriting.io');
     var hw = new Hw({apiKey: api_key, apiSecret: api_secret});
 
@@ -67,6 +68,7 @@ if(action === 'generate-single'){
         width: '504px'
     };
 
+
     if(type === 'pdf'){
         hw.getPdf(opts, function(err, pdf){
             if (err){
@@ -81,7 +83,11 @@ if(action === 'generate-single'){
                 return console.log(err);
             }
 
-            console.log('img', image); //image binary data
+            fs.writeFile('output/test.png', image, 'binary', function(err){
+                if (err) throw err;
+                console.log('File saved.')
+            });
+            //console.log('img', image); //image binary data
         });
     }
 
