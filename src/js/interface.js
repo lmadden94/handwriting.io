@@ -29,7 +29,7 @@ if(action === 'get-handwriting'){
     var hw = new Hw({apiKey: api_key, apiSecret: api_secret});
 
     argv = require('yargs')
-        .usage('Usage: $0 --handwriting_id [handwriting_id]')
+        .usage('Usage: $0 --handwriting_id [string]')
         .demand(['handwriting_id'])
         .argv;
 
@@ -47,9 +47,44 @@ if(action === 'get-handwriting'){
 
 if(action === 'generate-single'){
     argv = require('yargs')
-        .usage('Usage: $0 --id [handwriting_id]')
-        .demand(['id'])
+        .usage('Usage: $0 --handwriting_id [string] --text [string] --type[pdf/png]')
+        .demand(['handwriting_id', 'text'])
         .argv;
+
+    var Hw = require('handwriting.io');
+    var hw = new Hw({apiKey: api_key, apiSecret: api_secret});
+
+    var type = argv.type;
+    var text = argv.text;
+
+    var opts = {
+        handwriting_color: '#000000',
+        handwriting_id: '2D5QW0F80001',
+        handwriting_size: '20px',
+        height: 'auto',
+        line_spacing: '1.2',
+        text:text,
+        width: '504px'
+    };
+
+    if(type === 'pdf'){
+        hw.getPdf(opts, function(err, pdf){
+            if (err){
+                return console.log(err);
+            }
+
+            console.log('pdf', pdf); //pdf binary data
+        });
+    } else {
+        hw.getPng(opts, function(err, image){
+            if (err){
+                return console.log(err);
+            }
+
+            console.log('img', image); //image binary data
+        });
+    }
+
 }
 
 if(action === 'generate-list'){
