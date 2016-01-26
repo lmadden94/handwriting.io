@@ -14,9 +14,12 @@ if(action === 'get-handwritings'){
     var hw = new Hw({apiKey: api_key, apiSecret: api_secret});
 
     hw.getAllHandwritings(function(err, handwritings){
-        if (err)
+        if (err) {
             return console.log(err);
-        var json_tb_out = new json_tb(handwritings, null, function(table) {table.show()});
+        }
+        new json_tb(handwritings, null, function(table) {
+            table.show();
+        });
     });
 }
 
@@ -33,8 +36,15 @@ if(action === 'get-handwriting'){
     var handwriting_id = argv.id;
 
     hw.getHandwriting(handwriting_id, function(err, handwriting){
-        if (err)
+        if (err){
             return console.log(err);
-        var json_tb_out = new json_tb(handwriting, null, function(table) {table.show()});
+        }
+        new json_tb(handwriting, null, function(table) {
+            table.show();
+        });
     });
+}
+
+if(action === 'generate'){
+
 }
