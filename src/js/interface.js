@@ -64,7 +64,17 @@ if(action === 'generate-single'){
     var api_key = argv.api_key;
     var api_secret = argv.api_secret;
 
-    var gh = new GenerateHandwriting(api_key, api_secret, type, text);
+    var options = {
+        handwriting_color: '(0,0,0,1)',
+        handwriting_id: '2D5QW0F80001',
+        handwriting_size: '20pt',
+        height: 'auto',
+        line_spacing: '1.2',
+        text: text,
+        width: '4in'
+    };
+
+    var gh = new GenerateHandwriting(api_key, api_secret, type, options);
     gh.generate();
 
 
