@@ -29,11 +29,11 @@ if(action === 'get-handwriting'){
     var hw = new Hw({apiKey: api_key, apiSecret: api_secret});
 
     argv = require('yargs')
-        .usage('Usage: $0 --id [handwriting_id]')
-        .demand(['id'])
+        .usage('Usage: $0 --handwriting_id [handwriting_id]')
+        .demand(['handwriting_id'])
         .argv;
 
-    var handwriting_id = argv.id;
+    var handwriting_id = argv.handwriting_id;
 
     hw.getHandwriting(handwriting_id, function(err, handwriting){
         if (err){
@@ -45,6 +45,13 @@ if(action === 'get-handwriting'){
     });
 }
 
-if(action === 'generate'){
+if(action === 'generate-single'){
+    argv = require('yargs')
+        .usage('Usage: $0 --id [handwriting_id]')
+        .demand(['id'])
+        .argv;
+}
+
+if(action === 'generate-list'){
 
 }
