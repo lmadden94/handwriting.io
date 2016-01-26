@@ -46,50 +46,28 @@ if(action === 'get-handwriting'){
 }
 
 if(action === 'generate-single'){
+
+    var GenerateHandwriting = require('./generateHandwriting');
+
     argv = require('yargs')
         .usage('Usage: $0 --handwriting_id [string] --text [string] --type[pdf/png]')
         .demand(['handwriting_id', 'text'])
         .argv;
 
-    var fs = require('fs');
-    var Hw = require('handwriting.io');
-    var hw = new Hw({apiKey: api_key, apiSecret: api_secret});
 
     var type = argv.type;
-    var text = argv.text;
-
-    var opts = {
-        handwriting_color: '#000000',
-        handwriting_id: '2D5QW0F80001',
-        handwriting_size: '20px',
-        height: 'auto',
-        line_spacing: '1.2',
-        text:text,
-        width: '504px'
-    };
-
-
-    if(type === 'pdf'){
-        hw.getPdf(opts, function(err, pdf){
-            if (err){
-                return console.log(err);
-            }
-
-            console.log('pdf', pdf); //pdf binary data
-        });
-    } else {
-        hw.getPng(opts, function(err, image){
-            if (err){
-                return console.log(err);
-            }
-
-            fs.writeFile('output/test.png', image, 'binary', function(err){
-                if (err) throw err;
-                console.log('File saved.')
-            });
-            //console.log('img', image); //image binary data
-        });
+    if(type !== 'pdf' && type !== 'png'){
+        type = 'png';
+        console.log('defaulting --type to "'+type+'"');
     }
+    var text = argv.text;
+    var api_key = argv.api_key;
+    var api_secret = argv.api_secret;
+
+    var gh = new GenerateHandwriting(api_key, api_secret, type, text);
+    gh.generate();
+
+
 
 }
 
