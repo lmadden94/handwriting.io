@@ -26,7 +26,9 @@ var GenerateHandwriting = function(api_key, api_secret, type, options, overwrite
                 //console.log('pdf', pdf); //pdf binary data
 
                 fs.writeFile(out_path, pdf, 'binary', function(err){
-                    if (err) throw err;
+                    if (err) {
+                        throw err;
+                    }
                     console.log(out_path+' saved.');
                     callback();
                 });
@@ -38,14 +40,16 @@ var GenerateHandwriting = function(api_key, api_secret, type, options, overwrite
                 }
 
                 fs.writeFile(out_path, image, 'binary', function(err){
-                    if (err) throw err;
+                    if (err) {
+                        throw err;
+                    }
                     console.log('File saved.');
                     callback();
                 });
                 //console.log('img', image); //image binary data
             });
         }
-    }
+    };
 
 };
 
