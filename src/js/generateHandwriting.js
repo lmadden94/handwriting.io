@@ -1,7 +1,7 @@
 var Hw = require('handwriting.io');
 var fs = require('fs');
 
-var GenerateHandwriting = function(api_key, api_secret, type, options) {
+var GenerateHandwriting = function(api_key, api_secret, type, options, overwrite) {
 
     var model = this;
 
@@ -9,7 +9,14 @@ var GenerateHandwriting = function(api_key, api_secret, type, options) {
 
     model.options = options;
 
+
     model.generate = function(out_path){
+
+        // Check to see if file already exists
+        //if(fs.statSync(out_path).isFile()){
+        //    throw new Error("File already exists");
+        //}
+
         if(type === 'pdf'){
             model.hw.getPdf(model.options, function(err, pdf){
                 if (err){
@@ -21,6 +28,7 @@ var GenerateHandwriting = function(api_key, api_secret, type, options) {
                 fs.writeFile(out_path, pdf, 'binary', function(err){
                     if (err) throw err;
                     console.log(out_path+' saved.')
+                    return true;
                 });
             });
         } else {
@@ -31,7 +39,8 @@ var GenerateHandwriting = function(api_key, api_secret, type, options) {
 
                 fs.writeFile(out_path, image, 'binary', function(err){
                     if (err) throw err;
-                    console.log('File saved.')
+                    console.log('File saved.');
+                    return true;
                 });
                 //console.log('img', image); //image binary data
             });

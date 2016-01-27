@@ -64,6 +64,10 @@ if(action === 'generate-single'){
         .argv;
 
     var ho = new HandwritingOptions(argv.type);
+    //
+    //console.log(argv.text);
+    //console.log("hello\nworld");
+
     ho.setText(argv.text);
     var options = ho.getOptions();
 
@@ -96,9 +100,17 @@ if(action === 'generate-list'){
                 describe : 'column which has the text to be handwritten',
                 type: 'string',
                 demand: true
+            },
+            d: {
+                alias : 'output_dir',
+                describe : 'output directory',
+                type: 'string',
+                demand: true
             }
         })
         .argv;
+
+    // Check for duplicates
 
     var ho = new HandwritingOptions(argv.type);
 
@@ -106,6 +118,7 @@ if(action === 'generate-list'){
     var gl = new GenerateList(
         argv.sheet,
         argv.text_column,
+        argv.output_dir,
         argv.output_column,
         ho,
         argv.api_key,

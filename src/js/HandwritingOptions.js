@@ -15,7 +15,7 @@ var HandwritingOptions = function(type) {
     };
 
     model.setText = function(text){
-        model.options.text = text;
+        model.options.text = text.replace(/\\n/g, '\n'); // Un-escape newlines
     };
 
     model.setLineSpacing = function(line_spacing){

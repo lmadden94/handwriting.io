@@ -2,10 +2,12 @@ var J = require('j');
 var GenerateHandwriting = require('./generateHandwriting');
 
 var GenerateList = function(
-    spreadsheet_path, input_text_column, output_filename_column, handwriting_options, api_key, api_secret, type
+    spreadsheet_path, input_text_column, output_dir, output_filename_column, handwriting_options, api_key, api_secret, type
 ) {
 
     var model = this;
+
+    model.files = {};
 
     var readFileArray = J.readFile(spreadsheet_path);
     model.workbookJson = J.utils.to_json(readFileArray);
@@ -30,17 +32,30 @@ var GenerateList = function(
         }
     }
 
+
     // Create images
     var options;
+
     model.sheet.forEach(function(row){
 
-        handwriting_options.setText(row[input_text_column]);
+        var out_path = output_dir + row[output_filename_column] + '.' + type;
+
+        // Check for overwriting within this batch
+        if(model.files.hasOwnProperty(out_path)){
+            throw new Error("File '"+out_path+"' was already written in a previous row. Check column '" +
+                output_filename_column + "' for uniqueness." );
+        }
+
+        var text = row[input_text_column];
+        handwriting_options.setText(text);
 
         options = handwriting_options.getOptions();
 
         var gh = new GenerateHandwriting(api_key, api_secret, type, options);
-        gh.generate('output/' + row[output_filename_column] + '.' + type);
 
+        if(gh.generate(out_path) === true){
+            model.files.out_path = 1;
+        }
     });
 
 
