@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/dominickp/handwriting.io#readme",
   "dependencies": {
+    "async": "^1.5.2",
     "cli-table2": "^0.1.9",
     "gulp": "^3.9.0",
     "handwriting.io": "^0.1.0",
