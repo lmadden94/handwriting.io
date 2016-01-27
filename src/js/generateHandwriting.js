@@ -9,7 +9,7 @@ var GenerateHandwriting = function(api_key, api_secret, type, options) {
 
     model.options = options;
 
-    model.generate = function(){
+    model.generate = function(out_path){
         if(type === 'pdf'){
             model.hw.getPdf(model.options, function(err, pdf){
                 if (err){
@@ -18,7 +18,7 @@ var GenerateHandwriting = function(api_key, api_secret, type, options) {
 
                 //console.log('pdf', pdf); //pdf binary data
 
-                fs.writeFile('output/test2.pdf', pdf, 'binary', function(err){
+                fs.writeFile(out_path, pdf, 'binary', function(err){
                     if (err) throw err;
                     console.log('File saved.')
                 });
@@ -29,7 +29,7 @@ var GenerateHandwriting = function(api_key, api_secret, type, options) {
                     return console.log(err);
                 }
 
-                fs.writeFile('output/test2.png', image, 'binary', function(err){
+                fs.writeFile(out_path, image, 'binary', function(err){
                     if (err) throw err;
                     console.log('File saved.')
                 });

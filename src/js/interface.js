@@ -48,6 +48,7 @@ if(action === 'get-handwriting'){
 if(action === 'generate-single'){
 
     var GenerateHandwriting = require('./generateHandwriting');
+    var HandwritingOptions = require('./handwritingOptions.js');
 
     argv = require('yargs')
         .usage('Usage: $0 --handwriting_id [string] --text [string] --type[pdf/png]')
@@ -60,24 +61,17 @@ if(action === 'generate-single'){
         type = 'png';
         console.log('defaulting --type to "'+type+'"');
     }
-    var text = argv.text;
     var api_key = argv.api_key;
     var api_secret = argv.api_secret;
 
-    var options = {
-        handwriting_color: '(0,0,0,1)',
-        handwriting_id: '2D5QW0F80001',
-        handwriting_size: '20pt',
-        height: 'auto',
-        line_spacing: '1.2',
-        text: text,
-        width: '4in'
-    };
+
+    var ho = new HandwritingOptions(type);
+    ho.setText(argv.text);
+
+    var options = ho.getOptions();
 
     var gh = new GenerateHandwriting(api_key, api_secret, type, options);
-    gh.generate();
-
-
+    gh.generate('output/example.pdf');
 
 }
 
