@@ -74,6 +74,7 @@ if(action === 'generate-single'){
 
 if(action === 'generate-list'){
     var GenerateList = require('./generateList');
+    var HandwritingOptions = require('./handwritingOptions.js');
 
     argv = require('yargs')
         .usage('Usage: $0 --sheet [string] --text_column [string] --output_column [string]')
@@ -99,6 +100,17 @@ if(action === 'generate-list'){
         })
         .argv;
 
-    var gl = new GenerateList(argv.sheet, argv.text_column, argv.output_column);
+    var ho = new HandwritingOptions(argv.type);
+
+
+    var gl = new GenerateList(
+        argv.sheet,
+        argv.text_column,
+        argv.output_column,
+        ho,
+        argv.api_key,
+        argv.api_secret,
+        argv.type
+    );
 
 }

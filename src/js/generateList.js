@@ -1,6 +1,9 @@
 var J = require('j');
+var GenerateHandwriting = require('./generateHandwriting');
 
-var GenerateList = function(spreadsheet_path, input_text_column, output_filename_column) {
+var GenerateList = function(
+    spreadsheet_path, input_text_column, output_filename_column, handwriting_options, api_key, api_secret, type
+) {
 
     var model = this;
 
@@ -16,7 +19,6 @@ var GenerateList = function(spreadsheet_path, input_text_column, output_filename
     // Set sheet
     for(var sheet_name in model.workbookJson){
         model.sheet = model.workbookJson[sheet_name];
-        console.log(model.sheet);
 
         // Check text column exists
         if(!model.sheet[0].hasOwnProperty(input_text_column)){
@@ -28,8 +30,19 @@ var GenerateList = function(spreadsheet_path, input_text_column, output_filename
         }
     }
 
+    // Create images
+    var options;
+    model.sheet.forEach(function(row){
 
-    //console.log(model.workbookJson);
+        handwriting_options.setText(row[input_text_column]);
+
+        options = handwriting_options.getOptions();
+
+        var gh = new GenerateHandwriting(api_key, api_secret, type, options);
+        gh.generate('output/' + row[output_filename_column] + '.' + type);
+
+    });
+
 
 };
 

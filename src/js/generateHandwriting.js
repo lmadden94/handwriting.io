@@ -20,7 +20,7 @@ var GenerateHandwriting = function(api_key, api_secret, type, options) {
 
                 fs.writeFile(out_path, pdf, 'binary', function(err){
                     if (err) throw err;
-                    console.log('File saved.')
+                    console.log(out_path+' saved.')
                 });
             });
         } else {
