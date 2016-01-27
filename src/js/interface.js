@@ -58,21 +58,24 @@ if(action === 'generate-single'){
                 describe: 'pdf or png',
                 type: 'string',
                 default: 'pdf'
+            },
+            o: {
+                alias : 'output_path',
+                describe: 'path for the handwriting output file',
+                type: 'string',
+                demand: true
             }
         })
         .demand(['handwriting_id', 'text'])
         .argv;
 
     var ho = new HandwritingOptions(argv.type);
-    //
-    //console.log(argv.text);
-    //console.log("hello\nworld");
 
     ho.setText(argv.text);
     var options = ho.getOptions();
 
     var gh = new GenerateHandwriting(argv.api_key, argv.api_secret, argv.type, options);
-    gh.generate('output/example.pdf');
+    gh.generate(argv.output_path);
 
 }
 

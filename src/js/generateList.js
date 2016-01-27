@@ -58,7 +58,10 @@ var GenerateList = function(
 
             model.files.out_path = 1;
 
-            generateCallback();
+            // Delay 1 second
+            setTimeout(function() {
+                generateCallback();
+            }, 1000);
 
         });
 
