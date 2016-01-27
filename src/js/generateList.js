@@ -61,7 +61,7 @@ var GenerateList = function(
             // Delay 1 second
             setTimeout(function() {
                 generateCallback();
-            }, 1000);
+            }, 50);
 
         });
 
