@@ -10,7 +10,7 @@ var GenerateHandwriting = function(api_key, api_secret, type, options, overwrite
     model.options = options;
 
 
-    model.generate = function(out_path){
+    model.generate = function(out_path, callback){
 
         // Check to see if file already exists
         //if(fs.statSync(out_path).isFile()){
@@ -27,8 +27,8 @@ var GenerateHandwriting = function(api_key, api_secret, type, options, overwrite
 
                 fs.writeFile(out_path, pdf, 'binary', function(err){
                     if (err) throw err;
-                    console.log(out_path+' saved.')
-                    return true;
+                    console.log(out_path+' saved.');
+                    callback();
                 });
             });
         } else {
@@ -40,7 +40,7 @@ var GenerateHandwriting = function(api_key, api_secret, type, options, overwrite
                 fs.writeFile(out_path, image, 'binary', function(err){
                     if (err) throw err;
                     console.log('File saved.');
-                    return true;
+                    callback();
                 });
                 //console.log('img', image); //image binary data
             });

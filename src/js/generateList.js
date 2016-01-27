@@ -53,9 +53,13 @@ var GenerateList = function(
 
         var gh = new GenerateHandwriting(api_key, api_secret, type, options);
 
-        if(gh.generate(out_path) === true){
+        gh.generate(out_path, function(){
+
             model.files.out_path = 1;
-        }
+
+        });
+
+
     });
 
 
