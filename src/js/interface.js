@@ -52,29 +52,53 @@ if(action === 'generate-single'){
 
     argv = require('yargs')
         .usage('Usage: $0 --handwriting_id [string] --text [string] --type[pdf/png]')
+        .options({
+            t: {
+                alias : 'type',
+                describe: 'pdf or png',
+                type: 'string',
+                default: 'pdf'
+            }
+        })
         .demand(['handwriting_id', 'text'])
         .argv;
 
-
-    var type = argv.type;
-    if(type !== 'pdf' && type !== 'png'){
-        type = 'png';
-        console.log('defaulting --type to "'+type+'"');
-    }
-    var api_key = argv.api_key;
-    var api_secret = argv.api_secret;
-
-
-    var ho = new HandwritingOptions(type);
+    var ho = new HandwritingOptions(argv.type);
     ho.setText(argv.text);
-
     var options = ho.getOptions();
 
-    var gh = new GenerateHandwriting(api_key, api_secret, type, options);
+    var gh = new GenerateHandwriting(argv.api_key, argv.api_secret, argv.type, options);
     gh.generate('output/example.pdf');
 
 }
 
 if(action === 'generate-list'){
+    var GenerateList = require('./generateList');
+
+    argv = require('yargs')
+        .usage('Usage: $0 --sheet [string] --text_column [string] --output_column [string]')
+        .options({
+            s: {
+                alias : 'sheet',
+                describe: 'path to the input spreadsheet',
+                type: 'string',
+                demand: true
+            },
+            t: {
+                alias : 'text_column',
+                describe : 'column which has the text to be handwritten',
+                type: 'string',
+                demand: true
+            },
+            o: {
+                alias : 'output_column',
+                describe : 'column which has the text to be handwritten',
+                type: 'string',
+                demand: true
+            }
+        })
+        .argv;
+
+    var gl = new GenerateList(argv.sheet, argv.text_column, argv.output_column);
 
 }
