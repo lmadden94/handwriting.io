@@ -44,7 +44,7 @@ var HandwritingOptions = function(type) {
         } else {
             return model.options;
         }
-    }
+    };
 
 };
 
