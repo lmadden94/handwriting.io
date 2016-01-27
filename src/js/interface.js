@@ -75,7 +75,9 @@ if(action === 'generate-single'){
     var options = ho.getOptions();
 
     var gh = new GenerateHandwriting(argv.api_key, argv.api_secret, argv.type, options);
-    gh.generate(argv.output_path);
+    gh.generate(argv.output_path, function(){
+        // done
+    });
 
 }
 
