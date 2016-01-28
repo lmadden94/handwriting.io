@@ -26,6 +26,16 @@ var HandwritingOptions = function(type) {
 
     model.setHandwritingColor = function(handwriting_color){
         if(handwriting_color){
+
+            var first_char = handwriting_color.charAt(0);
+
+            if(model.type == 'pdf' && first_char == "#"){
+                throw new Error("PDF images must be CYMK, not hex.")
+            }
+            if(model.type == 'png' && first_char == "("){
+                throw new Error("PNG images must be hex, not CYMK.")
+            }
+
             model.options.handwriting_color = handwriting_color;
         }
     };
