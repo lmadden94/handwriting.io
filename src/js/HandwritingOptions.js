@@ -19,23 +19,23 @@ var HandwritingOptions = function(type) {
     };
 
     model.setLineSpacing = function(line_spacing){
-        model.options.line_spacing = line_spacing;
+        if(line_spacing) model.options.line_spacing = line_spacing;
     };
 
     model.setHandwritingColor = function(handwriting_color){
-        model.options.handwriting_color = handwriting_color;
+        if(handwriting_color) model.options.handwriting_color = handwriting_color;
     };
 
     model.setHandwritingId = function(handwriting_id){
-        model.options.handwriting_id = handwriting_id;
+        if(handwriting_id) model.options.handwriting_id = handwriting_id;
     };
 
     model.setHeight = function(height){
-        model.options.height = height;
+        if(height) model.options.height = height;
     };
 
     model.setWidth = function(width){
-        model.options.width = width;
+        if(width) model.options.width = width;
     };
 
     model.getOptions = function(){
