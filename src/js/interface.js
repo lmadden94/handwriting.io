@@ -115,6 +115,9 @@ if(action === 'generate-list'){
             l: {
                 alias : 'line_spacing'
             },
+            z: {
+                alias : 'size'
+            },
             c: {
                 alias : 'color'
             },
@@ -134,6 +137,7 @@ if(action === 'generate-list'){
     var ho = new HandwritingOptions(argv.type);
     ho.setLineSpacing(argv.line_spacing);
     ho.setHandwritingColor(argv.color);
+    ho.setHandwritingSize(argv.size);
     ho.setHandwritingId(argv.handwriting_id);
     ho.setWidth(argv.width);
     ho.setHeight(argv.height);
