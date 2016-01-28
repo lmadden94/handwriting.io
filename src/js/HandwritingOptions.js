@@ -11,8 +11,7 @@ var HandwritingOptions = function(type) {
         handwriting_id: '2D5QW0F80001',
         handwriting_size: '20pt',
         height: 'auto',
-        line_spacing: '1.2',
-        width: '4in'
+        line_spacing: '1.2'
     };
 
     model.setText = function(text){
@@ -63,7 +62,7 @@ var HandwritingOptions = function(type) {
         var unit = value.slice(-2);
 
         // Verify units
-        if(unit !== 'pt' && unit !== 'px'){
+        if(unit !== 'pt' && unit !== 'px' && unit !== 'in'){
             throw new Error(
                 "Unsupported '"+parameter_name+"' unit '"+unit+"'. Use px for png and pt for pdf."
             );
@@ -71,7 +70,8 @@ var HandwritingOptions = function(type) {
 
         // Check unit/type matching
         if((unit === 'px' && model.type === 'pdf') ||
-            (unit === 'pt' && model.type === 'png')){
+            (unit === 'pt' && model.type === 'png') ||
+            (unit === 'in' && model.type === 'png')){
             throw new Error(
                 "Handwriting type '"+model.type+"' does not support '"+parameter_name+"' unit '"+unit+"'."
             );
