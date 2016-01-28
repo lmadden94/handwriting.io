@@ -111,12 +111,32 @@ if(action === 'generate-list'){
                 describe : 'output directory',
                 type: 'string',
                 demand: true
+            },
+            l: {
+                alias : 'line_spacing'
+            },
+            c: {
+                alias : 'color'
+            },
+            i: {
+                alias : 'handwriting_id'
+            },
+            w: {
+                alias : 'width'
+            },
+            h: {
+                alias : 'height'
             }
         })
         .argv;
 
     // Check for duplicates
     var ho = new HandwritingOptions(argv.type);
+    ho.setLineSpacing(argv.line_spacing);
+    ho.setHandwritingColor(argv.color);
+    ho.setHandwritingId(argv.handwriting_id);
+    ho.setWidth(argv.width);
+    ho.setHeight(argv.height);
 
     var gl = new GenerateList(
         argv.sheet,
