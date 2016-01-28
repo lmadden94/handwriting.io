@@ -116,9 +116,7 @@ if(action === 'generate-list'){
         .argv;
 
     // Check for duplicates
-
     var ho = new HandwritingOptions(argv.type);
-
 
     var gl = new GenerateList(
         argv.sheet,
