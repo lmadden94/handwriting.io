@@ -33,24 +33,7 @@ var HandwritingOptions = function(type) {
 
     model.setHandwritingSize = function(handwriting_size){
         if(handwriting_size){
-
-            var unit = handwriting_size.slice(-2);
-
-            // Verify units
-            if(unit !== 'pt' && unit !== 'px'){
-                throw new Error(
-                    "Unsupported handwriting size unit '"+unit+"'. Use px for png and pt for pdf."
-                );
-            }
-
-            // Check unit/type matching
-            if((unit === 'px' && model.type === 'pdf') ||
-                (unit === 'pt' && model.type === 'png')){
-                throw new Error(
-                    "Handwriting type '"+model.type+"' does not suport size unit '"+unit+"'."
-                );
-            }
-
+            model.validateTypeUnits(handwriting_size, 'handwriting size');
             model.options.handwriting_size = handwriting_size;
         }
     };
@@ -63,13 +46,35 @@ var HandwritingOptions = function(type) {
 
     model.setHeight = function(height){
         if(height){
+            model.validateTypeUnits(height, 'height');
             model.options.height = height;
         }
     };
 
     model.setWidth = function(width){
         if(width){
+            model.validateTypeUnits(width, 'width');
             model.options.width = width;
+        }
+    };
+
+    model.validateTypeUnits = function(value, parameter_name){
+
+        var unit = value.slice(-2);
+
+        // Verify units
+        if(unit !== 'pt' && unit !== 'px'){
+            throw new Error(
+                "Unsupported '"+parameter_name+"' unit '"+unit+"'. Use px for png and pt for pdf."
+            );
+        }
+
+        // Check unit/type matching
+        if((unit === 'px' && model.type === 'pdf') ||
+            (unit === 'pt' && model.type === 'png')){
+            throw new Error(
+                "Handwriting type '"+model.type+"' does not support '"+parameter_name+"' unit '"+unit+"'."
+            );
         }
     };
 
