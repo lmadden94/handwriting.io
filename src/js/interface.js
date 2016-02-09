@@ -88,6 +88,12 @@ if(action === 'generate-single'){
         .argv;
 
     var ho = new HandwritingOptions(argv.type);
+    ho.setLineSpacing(argv.line_spacing);
+    ho.setHandwritingColor(argv.color);
+    ho.setHandwritingSize(argv.size);
+    ho.setHandwritingId(argv.handwriting_id);
+    ho.setWidth(argv.width);
+    ho.setHeight(argv.height);
 
     ho.setText(argv.text);
     var options = ho.getOptions();
