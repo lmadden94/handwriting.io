@@ -66,7 +66,7 @@ Specify a line spacing. Amount of vertical space for each line, provided as a mu
 #### --color
 CMYK color values as decimal values in the following format: "(C,M,Y,K)". For example: "(0,0,0,1)" is black.
 
-#### --width and --weight
+#### --width and --height
 Width and height of the output image in pixels or inches. You should use inches for PDF and pixels for PNG. For example: "4 in" would give you 4 inches. Limiting the width of the image will cause long text to wrap on to another line.
 
 ## Generate list
