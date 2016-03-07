@@ -55,6 +55,20 @@ output/example.pdf saved.
 
 ```
 
+### Options
+
+#### --size
+Handwriting size in points or pixels, eg: "20pt". You should use points for PDF and pixels for PNG.
+
+#### --line_spacing
+Specify a line spacing. Amount of vertical space for each line, provided as a multiplier of handwriting size.
+
+#### --color
+CMYK color values as decimal values in the following format: "(C,M,Y,K)". For example: "(0,0,0,1)" is black.
+
+#### --width and --weight
+Width and height of the output image in pixels or inches. You should use inches for PDF and pixels for PNG. For example: "4 in" would give you 4 inches. Limiting the width of the image will cause long text to wrap on to another line.
+
 ## Generate list
 Generate many handwriting images with the use of a spreadsheet. Your spreadsheet may only have one sheet and will throw an error if a workbook with multiple tabs is input. You also have to enter the name of the column which will be used for the text. Lastly, you have to select the column that will be the name of the output file (without the file extension).
 
