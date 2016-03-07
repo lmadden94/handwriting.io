@@ -49,7 +49,7 @@ dominick:$ node src/js/interface.js --api_key=YOUR_API_KEY --api_secret=YOUR_API
 Make a single handwriting image with text specified in the command line.
 
 ```
-dominick:$ node src/js/interface.js --api_key=YOUR_API_KEY --api_secret=YOUR_API_SECRET --action=generate-single  --handwriting_id=7EQMJPSG00H9 --type=png --text="Hello world" --output_file="output/example.pdf"
+dominick:$ node src/js/interface.js --api_key=YOUR_API_KEY --api_secret=YOUR_API_SECRET --action=generate-single  --handwriting_id=7EQMJPSG00H9 --type=png --text="Hello world" --output_path="output/example.pdf"
 
 output/example.pdf saved.
 
