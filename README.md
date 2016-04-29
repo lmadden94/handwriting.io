@@ -53,6 +53,14 @@ dominick:$ node src/js/interface.js --api_key=YOUR_API_KEY --api_secret=YOUR_API
 ...
 ```
 
+You can also grep a handwriting name you know.
+
+```
+node src/js/interface.js --api_key=YOUR_API_KEY --api_secret=YOUR_API_SECRET--action=get-handwritings | grep Bailey
+│ 5WGWVX5G00WA │ Bailey         │ 2015-10-20T20:50:26.070586Z │ 2016-04-25T15:34:47.848553Z │ 1394            │ 1499             │ 1392                 │ 1534                   │
+
+```
+
 ## Generate single
 Make a single handwriting image with text specified in the command line.
 
