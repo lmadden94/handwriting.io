@@ -1,6 +1,10 @@
 # handwriting.io-generator 
 This utility allows to you generate handwriting images from handwriting.io within via a CLI. You can also drive handwriting production with a spreadsheet.
 
+## Todo
+- Make npm package
+- Setup CLI alias
+
 ## Installation
 
 - clone the repo
