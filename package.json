@@ -1,21 +1,24 @@
 {
-  "name": "handwriting.io-batch-generate",
+  "name": "handwriting-io-cli",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "./src/js/interface.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "bin": {
+    "handwriting-io": "./src/js/interface.js"
+  },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/dominickp/handwriting.io.git"
+    "url": "git+https://github.com/shawmut/handwriting.io-generator.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/dominickp/handwriting.io/issues"
+    "url": "https://github.com/shawmut/handwriting.io-generator/issues"
   },
-  "homepage": "https://github.com/dominickp/handwriting.io#readme",
+  "homepage": "https://github.com/shawmut/handwriting.io-generator#readme",
   "dependencies": {
     "async": "^1.5.2",
     "cli-table2": "^0.1.9",

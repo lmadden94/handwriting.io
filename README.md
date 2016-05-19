@@ -7,13 +7,12 @@ This utility allows to you generate handwriting images from handwriting.io withi
 
 ## Installation
 
-- clone the repo
-- npm install
+- npm install handwriting-io-cli -g
 
 ## Get a handwriting
 Returns specific handwriting style details in a cli-table.
 ```
-dominick:$ node src/js/interface.js --api_key=YOUR_API_KEY --api_secret=YOUR_API_SECRET --action=get-handwriting --handwriting_id=HANDWRITING_ID
+dominick:$ handwriting-io --api_key=YOUR_API_KEY --api_secret=YOUR_API_SECRET --action=get-handwriting --handwriting_id=HANDWRITING_ID
 
 ┌────────────────────────┬─────────────────────────────┐
 │ id                     │ 7EQMJPSG00H9                │
@@ -39,7 +38,7 @@ dominick:$ node src/js/interface.js --api_key=YOUR_API_KEY --api_secret=YOUR_API
 Lists all handwritings and style details in a cli-table.
 
 ```
-dominick:$ node src/js/interface.js --api_key=YOUR_API_KEY --api_secret=YOUR_API_SECRET --action=get-handwritings
+dominick:$ node handwriting-io --api_key=YOUR_API_KEY --api_secret=YOUR_API_SECRET --action=get-handwritings
 
 ┌──────────────┬────────────────┬─────────────────────────────┬─────────────────────────────┬─────────────────┬──────────────────┬──────────────────────┬────────────────────────┐
 │ id           │ title          │ date_created                │ date_modified               │ rating_neatness │ rating_cursivity │ rating_embellishment │ rating_character_width │
@@ -56,7 +55,7 @@ dominick:$ node src/js/interface.js --api_key=YOUR_API_KEY --api_secret=YOUR_API
 You can also grep a handwriting name you know.
 
 ```
-node src/js/interface.js --api_key=YOUR_API_KEY --api_secret=YOUR_API_SECRET--action=get-handwritings | grep Bailey
+handwriting-io --api_key=YOUR_API_KEY --api_secret=YOUR_API_SECRET--action=get-handwritings | grep Bailey
 │ 5WGWVX5G00WA │ Bailey         │ 2015-10-20T20:50:26.070586Z │ 2016-04-25T15:34:47.848553Z │ 1394            │ 1499             │ 1392                 │ 1534                   │
 
 ```
@@ -65,7 +64,7 @@ node src/js/interface.js --api_key=YOUR_API_KEY --api_secret=YOUR_API_SECRET--ac
 Make a single handwriting image with text specified in the command line.
 
 ```
-dominick:$ node src/js/interface.js --api_key=YOUR_API_KEY --api_secret=YOUR_API_SECRET --action=generate-single  --handwriting_id=7EQMJPSG00H9 --type=png --text="Hello world" --output_path="output/example.pdf"
+dominick:$ handwriting-io --api_key=YOUR_API_KEY --api_secret=YOUR_API_SECRET --action=generate-single  --handwriting_id=7EQMJPSG00H9 --type=png --text="Hello world" --output_path="output/example.pdf"
 
 output/example.pdf saved.
 
