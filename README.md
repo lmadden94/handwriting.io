@@ -1,11 +1,18 @@
 # handwriting.io-generator 
 This utility allows to you generate handwriting images from handwriting.io within via a CLI. You can also drive handwriting production with a spreadsheet.
 
+## Todo
+- Make npm package
+- Setup CLI alias
+
+## Installation
+
+- npm install handwriting-io-cli -g
 
 ## Get a handwriting
 Returns specific handwriting style details in a cli-table.
 ```
-dominick:$ node src/js/interface.js --api_key=YOUR_API_KEY --api_secret=YOUR_API_SECRET --action=get-handwriting --handwriting_id=HANDWRITING_ID
+dominick:$ handwriting-io --api_key=YOUR_API_KEY --api_secret=YOUR_API_SECRET --action=get-handwriting --handwriting_id=HANDWRITING_ID
 
 ┌────────────────────────┬─────────────────────────────┐
 │ id                     │ 7EQMJPSG00H9                │
@@ -31,7 +38,7 @@ dominick:$ node src/js/interface.js --api_key=YOUR_API_KEY --api_secret=YOUR_API
 Lists all handwritings and style details in a cli-table.
 
 ```
-dominick:$ node src/js/interface.js --api_key=YOUR_API_KEY --api_secret=YOUR_API_SECRET --action=get-handwritings
+dominick:$ node handwriting-io --api_key=YOUR_API_KEY --api_secret=YOUR_API_SECRET --action=get-handwritings
 
 ┌──────────────┬────────────────┬─────────────────────────────┬─────────────────────────────┬─────────────────┬──────────────────┬──────────────────────┬────────────────────────┐
 │ id           │ title          │ date_created                │ date_modified               │ rating_neatness │ rating_cursivity │ rating_embellishment │ rating_character_width │
@@ -45,15 +52,37 @@ dominick:$ node src/js/interface.js --api_key=YOUR_API_KEY --api_secret=YOUR_API
 ...
 ```
 
+You can also grep a handwriting name you know.
+
+```
+handwriting-io --api_key=YOUR_API_KEY --api_secret=YOUR_API_SECRET--action=get-handwritings | grep Bailey
+│ 5WGWVX5G00WA │ Bailey         │ 2015-10-20T20:50:26.070586Z │ 2016-04-25T15:34:47.848553Z │ 1394            │ 1499             │ 1392                 │ 1534                   │
+
+```
+
 ## Generate single
 Make a single handwriting image with text specified in the command line.
 
 ```
-dominick:$ node src/js/interface.js --api_key=YOUR_API_KEY --api_secret=YOUR_API_SECRET --action=generate-single  --handwriting_id=7EQMJPSG00H9 --type=png --text="Hello world" --output_file="output/example.pdf"
+dominick:$ handwriting-io --api_key=YOUR_API_KEY --api_secret=YOUR_API_SECRET --action=generate-single  --handwriting_id=7EQMJPSG00H9 --type=png --text="Hello world" --output_path="output/example.pdf"
 
 output/example.pdf saved.
 
 ```
+
+### Options
+
+#### --size
+Handwriting size in points or pixels, eg: "20pt". You should use points for PDF and pixels for PNG.
+
+#### --line_spacing
+Specify a line spacing. Amount of vertical space for each line, provided as a multiplier of handwriting size.
+
+#### --color
+CMYK color values as decimal values in the following format: "(C,M,Y,K)". For example: "(0,0,0,1)" is black.
+
+#### --width and --height
+Width and height of the output image in pixels or inches. You should use inches for PDF and pixels for PNG. For example: "4 in" would give you 4 inches. Limiting the width of the image will cause long text to wrap on to another line.
 
 ## Generate list
 Generate many handwriting images with the use of a spreadsheet. Your spreadsheet may only have one sheet and will throw an error if a workbook with multiple tabs is input. You also have to enter the name of the column which will be used for the text. Lastly, you have to select the column that will be the name of the output file (without the file extension).

@@ -53,23 +53,47 @@ if(action === 'generate-single'){
     argv = require('yargs')
         .usage('Usage: $0 --handwriting_id [string] --text [string] --type[pdf/png]')
         .options({
+            o: {
+                alias : 'output_path',
+                describe: 'path for the handwriting output file',
+                type: 'string',
+                demand: true
+            },
             t: {
                 alias : 'type',
                 describe: 'pdf or png',
                 type: 'string',
                 default: 'pdf'
             },
-            o: {
-                alias : 'output_path',
-                describe: 'path for the handwriting output file',
-                type: 'string',
-                demand: true
+            l: {
+                alias : 'line_spacing'
+            },
+            z: {
+                alias : 'size'
+            },
+            c: {
+                alias : 'color'
+            },
+            i: {
+                alias : 'handwriting_id'
+            },
+            w: {
+                alias : 'width'
+            },
+            h: {
+                alias : 'height'
             }
         })
         .demand(['handwriting_id', 'text'])
         .argv;
 
     var ho = new HandwritingOptions(argv.type);
+    ho.setLineSpacing(argv.line_spacing);
+    ho.setHandwritingColor(argv.color);
+    ho.setHandwritingSize(argv.size);
+    ho.setHandwritingId(argv.handwriting_id);
+    ho.setWidth(argv.width);
+    ho.setHeight(argv.height);
 
     ho.setText(argv.text);
     var options = ho.getOptions();
